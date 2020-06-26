@@ -1,5 +1,4 @@
 @extends('layouts.admin')
-
 @section('content')
 <div class="container">
     <h1 class="mb-4">Blog Archive</h1>
@@ -25,8 +24,8 @@
             <tr>
                 <td>{{$post->id}}</td>
                 <td>{{$post->title}}</td>
-                <td>{{$post->created_at}}</td>
-                <td>{{$post->updated_at}}</td>
+                <td>{{$post->created_at->format('d/m/y')}}</td>
+                <td>{{$post->updated_at->diffForHumans()}}</td>
                 <td>
                     <a class = "btn btn-success"href="{{route('admin.posts.show' , $post->id)}}">Show</a>
                 </td>
