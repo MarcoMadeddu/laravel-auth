@@ -4,6 +4,12 @@
 <div class="container">
     <h1 class="mb-4">Blog Archive</h1>
     
+    @if(session('post-deleted'))
+        <div class="alert alert-success">
+            <span>Post deleted successfully: {{session('post-deleted')}}</span>
+        </div>
+    @endif
+
     <table class="table">
         <thead>
             <tr>
@@ -25,10 +31,15 @@
                     <a class = "btn btn-success"href="{{route('admin.posts.show' , $post->id)}}">Show</a>
                 </td>
                 <td>
-                    <a class = "btn btn-primary"href="">Edit</a>
+                <a class = "btn btn-primary"href="{{route('admin.posts.edit' , $post->id)}}">Edit</a>
                 </td>
                 <td>
-                    <a class = "btn btn-danger"href="">Delete</a>
+                    <form action="{{ route('admin.posts.destroy' , $post->id)}}" method="POST">
+                        @csrf
+                        @method('DELETE')
+
+                        <input class ="btn btn-danger" type="submit" value ="Delete">
+                    </form>
                 </td>
             </tr>
             @endforeach
