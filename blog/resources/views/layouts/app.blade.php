@@ -78,6 +78,7 @@
 
         <main class="py-4">
             @yield('content')
+            LARAVEL
         </main>
     </div>
 </body>
